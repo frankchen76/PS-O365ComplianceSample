@@ -5,7 +5,7 @@ function Get-GermanyUsers {
     )
     $ret = @();
     $null = Connect-AzureAD -Credential $cred
-    # get last 7 days created users which can be combined with officeLocation Country eq 'United State'
+    # The below is for testing. Replace the below $filter syntax to retrieve the users based on the criteria. Combined with officeLocation Country eq 'United State'
     Get-AzureADUser -Top 10 -Filter "createdDateTime ge datetime'2019-10-01' and UserType eq 'Member'" | ForEach-Object -Process { $ret += $_.UserPrincipalName }
     return $ret
 }
