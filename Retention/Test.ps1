@@ -17,8 +17,8 @@ Remove-RetentionCompliancePolicy -Identity "PSEmailRetention3" -ForceDeletion
 Remove-RetentionCompliancePolicy -Identity "PSEmailRetention2" -ForceDeletion
 Remove-RetentionCompliancePolicy -Identity "PSEmailRetention1" -ForceDeletion
 
-for($index=1;$index -le 3;$index++){
-    $name = [System.String]::Format("PSEmailRetention{0}",$index)
+for ($index = 1; $index -le 3; $index++) {
+    $name = [System.String]::Format("PSEmailRetention{0}", $index)
     Remove-RetentionCompliancePolicy -Identity $name -Confirm:$false
     Remove-RetentionCompliancePolicy -Identity $name -ForceDeletion -Confirm:$false
     Write-Host "$($name) was removed."
@@ -71,3 +71,6 @@ $users = @()
 $users.length
 
 $ps = Get-RetentionCompliancePolicy -DistributionDetail | Where-Object { $_.Name.StartsWith("Pe") }
+
+# get O365 segment definition
+Get-OrganizationSegment | ft Name, EXOSegmentID
